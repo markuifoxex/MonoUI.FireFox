@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -155,10 +156,13 @@
         <div class="colour-swatch" data-colour="#c77dff" style="background:#c77dff;"></div>
         <div class="colour-swatch" data-colour="#ff6b6b" style="background:#ff6b6b;"></div>
 
-        <div class="colour-swatch colour-picker-swatch" title="Custom colour">
-          <img src="/Icons/pick.png" class="pick" width="35" height="35" style="pointer-events:none;">
-          <input type="color" id="colour-input" value="#ffffff">
+          <div class="colour-swatch colour-picker-swatch" title="Custom colour">
+            <img src="/Icons/pick.png" class="pick" width="34" height="34" style="pointer-events:none;">
+          <input type="color" id="colour-input" value="#ffffff">          
         </div>
+        <img src="/Icons/reset.png" id="colour-reset" 
+       style="width:35px; height:35px; cursor:pointer;" 
+       title="Reset to default">
       </div>
     </section>
 
@@ -182,11 +186,28 @@
       <p class="M-S">Main Settings</p>
     </div>
 
-    <section class="settings-section">
-      <p class="settings-label-w">city for weather widget</p>
-      <input id="settings-city" type="text" placeholder="e.g. London" />
-      <button id="settings-city-save" class="btn-finish" style="margin-top:10px;">save city</button>
-    </section>
+    <div class="fonts-w"> 
+  <p class="f-w">Fonts for widgets</p>
+  <input id="settings-city-fonts" type="text" placeholder='Default font - "Jost". Only GoogleFonts' />
+  <button id="settings-font-save" class="btn-finish" style="margin-top:10px;">save</button>
+</div>
+
+<section class="settings-section-w">
+  <p class="settings-label-w">city for weather widget</p>
+  <input id="settings-city" type="text" placeholder="Type here" />
+  <button id="settings-city-save" class="btn-finish" style="margin-top:10px;">save</button>
+</section>
+
+<div class="fonts-w"> 
+  <p class="c-w">Change Wallpaper</p>
+  <input type="file" id="wallpaper-input" accept="image/*" style="display:none;">
+  <label for="wallpaper-input" class="btn-finish" style="text-align:center; cursor:pointer; position: relative; bottom: 10px; border-radius: 10px;">choose</label>
+  <p class="p-u-w">"Default Wallpaper" you can find on</p>
+  <a href="https://github.com/markuifoxex/MarkUI.FireFox" target="_blank" style="text-decoration: underline; text-decoration-color: #5c5c5c; color: #4f4f4f;">
+  <span class="p-u-w-g">GitHub</span>
+</a>
+
+</div>
   </div>
 </div>
 
