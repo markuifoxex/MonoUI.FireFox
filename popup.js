@@ -1,3 +1,12 @@
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.style.opacity = '0';
+  document.body.style.visibility = 'visible';
+  requestAnimationFrame(() => {
+    document.body.style.transition = 'opacity 0.15s ease';
+    document.body.style.opacity = '1';
+  });
+});
+
 // ── STATE ──
 const state = {
   slide: 0,
@@ -276,7 +285,7 @@ function applyAccentColour(colour, mode = 'theme') {
   if (mode === 'theme') {
     // ВСЁ красится в выбранный цвет
     document.querySelectorAll(
-  '.settings-label, .settings-label-w, .settings-label-t, .M-S, .f-w, .c-w, .settings-bor-cha, .security-mode').forEach(el => {
+  '.settings-label, .settings-label-w, .settings-label-t, .M-S, .f-w, .c-w, .settings-bor-cha, .security-mode, .border-arrow, .widgets-h').forEach(el => {
   el.style.color = colour;
 });
 
@@ -286,7 +295,7 @@ function applyAccentColour(colour, mode = 'theme') {
 
   } else {
     // ДЕФОЛТНАЯ ТЕМА (серые)
-    document.querySelectorAll('.settings-label, .settings-label-w, .settings-label-t, .f-w, .c-w, .settings-bor-cha, .security-mode').forEach(el => {
+    document.querySelectorAll('.settings-label, .settings-label-w, .settings-label-t, .f-w, .c-w, .settings-bor-cha, .security-mode, .border-arrow, .widgets-h').forEach(el => {
   el.style.color = 'rgba(255,255,255,0.3)';
 });
 
@@ -634,6 +643,13 @@ const settingsPanel = document.getElementById('settings-panel');
 const btnEdit = document.getElementById('btn-edit');
 const settingsOverlay = document.getElementById('settings-overlay');
 
+// закрытие при клике вне панели
+if (settingsOverlay && settingsPanel) {
+  settingsOverlay.addEventListener('click', () => {
+    settingsPanel.classList.remove('open');
+  });
+}
+
 if (btnEdit && settingsPanel) {
   btnEdit.addEventListener('click', () => {
     settingsPanel.classList.add('open');
@@ -859,6 +875,7 @@ if (wallpaperInput) {
       const dataUrl = ev.target.result;
       const app = document.getElementById('app');
       if (app) app.style.backgroundImage = `url(${dataUrl})`;
+      localStorage.removeItem('ob_wallpaper_url'); // сброс стор-обоев
       saveWallpaperToDB(dataUrl);
     };
 
@@ -867,12 +884,19 @@ if (wallpaperInput) {
 }
 
 // загрузка обоев при старте
-loadWallpaperFromDB().then(dataUrl => {
-  if (dataUrl) {
-    const app = document.getElementById('app');
-    if (app) app.style.backgroundImage = `url(${dataUrl})`;
-  }
-});
+// Сначала проверяем URL из стора, потом IndexedDB (загруженный файл)
+const savedWallpaperUrl = localStorage.getItem('ob_wallpaper_url');
+if (savedWallpaperUrl) {
+  const app = document.getElementById('app');
+  if (app) app.style.backgroundImage = `url(${savedWallpaperUrl})`;
+} else {
+  loadWallpaperFromDB().then(dataUrl => {
+    if (dataUrl) {
+      const app = document.getElementById('app');
+      if (app) app.style.backgroundImage = `url(${dataUrl})`;
+    }
+  });
+}
 
 const savedTransparency = localStorage.getItem('ob_transparency');
 
@@ -956,3 +980,306 @@ if (themeClose && themeModal) {
     themeModal.classList.remove('open');
   });
 }
+
+// Применение обоев
+
+document.querySelectorAll(".theme-item-apple .theme-card, .theme-item-window .theme-card, .theme-item-linux .theme-card, .theme-item-quotes .theme-card, .theme-item-Duck .theme-card, .theme-item-pink .theme-card, .theme-item-reddot .theme-card, .theme-item-redq .theme-card, .theme-item-krak .theme-card, .theme-item-wars .theme-card, .theme-item-Japan .theme-card, .theme-item-Fantasy .theme-card, .theme-item-f1 .theme-card, .theme-item-2026 .theme-card, .theme-item-Dog .theme-card, .theme-item-Cat .theme-card, .theme-item-Gorilla .theme-card, .theme-item-Cloud .theme-card, .theme-item-popy .theme-card, .theme-item-jojo .theme-card, .theme-item-tutu .theme-card, .theme-item-nite .theme-card, .theme-item-w11b .theme-card, .theme-item-w11w .theme-card, .theme-item-scifi .theme-card").forEach(img => {
+  img.style.cursor = "pointer";
+  img.addEventListener('click', () => {
+    const src = img.src;
+    const app = document.getElementById('app');
+    if (app) {
+  app.style.transition = 'opacity 0.4s ease';
+  app.style.opacity = '0';
+  setTimeout(() => {
+    app.style.backgroundImage = `url(${src})`;
+    app.style.opacity = '1';
+  }, 400);
+}
+
+     // Сохраняем как URL (не IndexedDB — это не загруженный файл)
+
+     localStorage.setItem('ob_wallpaper_url', src);
+
+    //  закрывание окна
+
+    const themeModal = document.getElementById('theme-modal');
+    if (themeModal) themeModal.classList.remove('open');
+  });
+});
+
+// Opened Widgets Grid
+
+const widgetsOpenBtn = document.getElementById('widgets-open-btn');
+const widgetEditor = document.getElementById('widget-editor');
+const widgetEditorClose = document.getElementById('widget-editor-close');
+const widgetGrid = document.getElementById('widget-grid');
+
+if (widgetsOpenBtn && widgetEditor) {
+  widgetsOpenBtn.addEventListener('click', () => {
+    widgetEditor.classList.add('open');
+  });
+}
+
+if (widgetEditorClose && widgetEditor) {
+  widgetEditorClose.addEventListener('click', () => {
+    widgetEditor.classList.remove('open');
+  });
+}
+
+document.querySelectorAll('.widget-item').forEach(item => {
+  item.addEventListener('dragstart', e => {
+    e.dataTransfer.setData('widget-type', item.dataset.widget);
+  });
+});
+
+let draggingWidget = null;
+let dragOffsetX = 0;
+let dragOffsetY = 0;
+
+if (widgetGrid) {
+  widgetGrid.addEventListener('dragover', e => {
+    e.preventDefault();
+  });
+
+  widgetGrid.addEventListener('drop', e => {
+    e.preventDefault();
+
+    // Если тащим уже существующий виджет — перемещаем
+    if (draggingWidget) {
+      const rect = widgetGrid.getBoundingClientRect();
+      draggingWidget.style.left = (e.clientX - rect.left - dragOffsetX) + 'px';
+      draggingWidget.style.top  = (e.clientY - rect.top  - dragOffsetY) + 'px';
+      draggingWidget = null;
+      return;
+    }
+
+    // Иначе создаём новый виджет из панели
+    const type = e.dataTransfer.getData('widget-type');
+    if (!type) return;
+
+    const rect = widgetGrid.getBoundingClientRect();
+    const widget = document.createElement('div');
+    widget.className = 'placed-widget';
+    widget.innerHTML = `
+  <span>${type}</span>
+  <span class="widget-delete" style="
+    position:absolute; top:-8px; right:-8px;
+    width:18px; height:18px; border-radius:50%;
+    background:rgba(255,60,60,0.85); color:white;
+    font-size:11px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    line-height:1;
+  ">✕</span>
+`;
+widget.style.position = 'relative';
+    widget.draggable = true;
+
+    widget.style.position = 'absolute';
+    widget.style.left = (e.clientX - rect.left) + 'px';
+    widget.style.top  = (e.clientY - rect.top)  + 'px';
+    widget.style.padding = '12px 18px';
+    widget.style.borderRadius = '16px';
+    widget.style.border = '1px solid rgba(255,255,255,0.35)';
+    widget.style.background = 'rgba(255,255,255,0.1)';
+    widget.style.color = 'white';
+    widget.style.fontFamily = 'Jost, sans-serif';
+    widget.style.cursor = 'grab';
+    widget.style.userSelect = 'none';
+
+    // Делаем уже размещённый виджет перетаскиваемым
+    widget.addEventListener('dragstart', e => {
+      draggingWidget = widget;
+      const wRect = widget.getBoundingClientRect();
+      dragOffsetX = e.clientX - wRect.left;
+      dragOffsetY = e.clientY - wRect.top;
+      e.dataTransfer.setData('widget-type', ''); // чтобы не создавался новый
+    });
+
+    widgetGrid.appendChild(widget);
+
+    widget.addEventListener('click', e => {
+  if (e.target.classList.contains('widget-delete')) return;
+  openWidgetSettings(widget, type);
+});
+
+    widget.querySelector('.widget-delete').addEventListener('click', e => {
+  e.stopPropagation();
+  widget.remove();
+
+      });
+  });
+}
+
+const app = document.getElementById('app');
+
+if (widgetsOpenBtn && widgetEditor && app) {
+  widgetsOpenBtn.addEventListener('click', () => {
+    app.classList.add('editing-widgets');
+    widgetEditor.classList.add('open');
+  });
+}
+
+if (widgetEditorClose && widgetEditor && app) {
+  widgetEditorClose.addEventListener('click', () => {
+    app.classList.remove('editing-widgets');
+    widgetEditor.classList.remove('open');
+  });
+}
+
+function openWidgetSettings(widget, type) {
+  const existing = document.getElementById('widget-settings-modal');
+  if (existing) existing.remove();
+
+  const modal = document.getElementById('widget-settings-modal-template').cloneNode(true);
+  modal.id = 'widget-settings-modal';
+  modal.style.display = 'flex';
+
+  modal.querySelector('.ws-title').textContent = type + ' settings';
+
+  document.body.appendChild(modal);
+
+  modal.querySelector('#ws-color').addEventListener('input', e => {
+    widget.style.color = e.target.value;
+  });
+  modal.querySelector('#ws-size').addEventListener('input', e => {
+    widget.style.fontSize = e.target.value + 'px';
+  });
+  modal.querySelector('#ws-bg').addEventListener('input', e => {
+    widget.style.background = e.target.value;
+  });
+  modal.querySelector('#ws-radius').addEventListener('input', e => {
+    widget.style.borderRadius = e.target.value + 'px';
+  });
+  modal.querySelector('#ws-opacity').addEventListener('input', e => {
+  const alpha = e.target.value / 100;
+  const currentBg = widget.style.background || 'rgba(255,255,255,0.1)';
+  // Парсим цвет и применяем только к фону
+  const hex = modal.querySelector('#ws-bg').value;
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  widget.style.background = `rgba(${r},${g},${b},${alpha})`;
+});
+
+  modal.querySelector('#ws-save').addEventListener('click', () => modal.remove());
+  modal.querySelector('#ws-cancel').addEventListener('click', () => modal.remove());
+  modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+}
+
+// catalog widgets panel 
+
+const widgetVariants = {
+  clock: [
+    { label: 'Digital', preview: '12:34', style: 'font-size:32px; padding:20px 28px; letter-spacing:4px;' },
+    { label: 'Minimal', preview: '12:34', style: 'font-size:18px; padding:12px 20px; opacity:0.7;' },
+    { label: 'Big', preview: '12:34', style: 'font-size:52px; padding:24px 32px; letter-spacing:6px;' },
+    { label: 'Box', preview: '12:34', style: 'font-size:28px; padding:20px; border:2px solid white; width:120px; text-align:center;' },
+  ],
+  weather: [
+    { label: 'Simple', preview: '☀️ 22°C', style: 'font-size:18px; padding:16px 24px;' },
+    { label: 'Big', preview: '☀️\n22°C', style: 'font-size:28px; padding:24px; text-align:center; white-space:pre;' },
+    { label: 'Minimal', preview: '22°', style: 'font-size:42px; padding:12px 20px; opacity:0.8;' },
+    { label: 'Card', preview: '☀️ Sunny\n22°C / 18°C', style: 'font-size:14px; padding:16px 20px; line-height:1.8; white-space:pre;' },
+  ],
+  notes: [
+    { label: 'Small', preview: '📝 note...', style: 'font-size:13px; padding:12px 16px; width:140px;' },
+    { label: 'Medium', preview: '📝 note...', style: 'font-size:14px; padding:16px 20px; width:200px; min-height:80px;' },
+    { label: 'Large', preview: '📝 note...', style: 'font-size:14px; padding:20px; width:280px; min-height:140px;' },
+    { label: 'Sticky', preview: '📝 note...', style: 'font-size:13px; padding:16px; width:160px; min-height:160px; background:rgba(255,220,50,0.15); border-color:rgba(255,220,50,0.4);' },
+  ],
+  quote: [
+    { label: 'Simple', preview: '"Quote text"', style: 'font-size:14px; padding:16px 20px; font-style:italic;' },
+    { label: 'Big', preview: '"Quote\ntext"', style: 'font-size:20px; padding:24px; font-style:italic; white-space:pre; max-width:280px;' },
+    { label: 'Minimal', preview: '" Q "', style: 'font-size:13px; padding:10px 16px; opacity:0.7; font-style:italic;' },
+    { label: 'Card', preview: '"Quote text"\n— Author', style: 'font-size:13px; padding:20px; white-space:pre; line-height:1.8; max-width:240px;' },
+  ]
+};
+
+function openWidgetPicker(type) {
+  const modal = document.getElementById('widget-picker-modal');
+  const title = document.getElementById('widget-picker-title');
+  const grid  = document.getElementById('widget-picker-grid');
+
+  title.textContent = type + '';
+  grid.innerHTML = '';
+
+  widgetVariants[type].forEach(variant => {
+    const card = document.createElement('div');
+    card.style.cssText = `
+      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
+      border-radius:14px; padding:16px; cursor:pointer; text-align:center;
+      transition: background 0.2s;
+    `;
+    card.innerHTML = `
+      <div style="font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:10px;">${variant.label}</div>
+      <div style="${variant.style} background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:12px; color:white; font-family:'Jost',sans-serif; display:inline-block;">${variant.preview}</div>
+    `;
+
+    card.addEventListener('mouseenter', () => card.style.background = 'rgba(255,255,255,0.12)');
+    card.addEventListener('mouseleave', () => card.style.background = 'rgba(255,255,255,0.06)');
+
+    card.addEventListener('click', () => {
+      modal.style.display = 'none';
+      placeWidget(type, variant);
+    });
+
+    grid.appendChild(card);
+  });
+
+  modal.style.display = 'flex';
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.style.display = 'none';
+  });
+}
+
+function placeWidget(type, variant) {
+  const widgetGrid = document.getElementById('widget-grid');
+  if (!widgetGrid) return;
+
+  const widget = document.createElement('div');
+  widget.className = 'placed-widget';
+  widget.draggable = true;
+  widget.innerHTML = `
+    <span>${variant.preview}</span>
+    <span class="widget-delete" style="
+      position:absolute; top:-8px; right:-8px;
+      width:18px; height:18px; border-radius:50%;
+      background:rgba(255,60,60,0.85); color:white;
+      font-size:11px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+    ">✕</span>
+  `;
+
+widget.style.cssText = `
+    position:absolute; left:60px; top:60px;
+    ${variant.style}
+    border:1px solid rgba(255,255,255,0.35);
+    background:rgba(255,255,255,0.1);
+    color:white; font-family:'Jost',sans-serif;
+    cursor:grab; user-select:none;
+    border-radius:16px; white-space:pre;
+    display:flex; align-items:center; justify-content:center;
+  `;
+
+  widget.addEventListener('dragstart', e => {
+    draggingWidget = widget;
+    const wRect = widget.getBoundingClientRect();
+    dragOffsetX = e.clientX - wRect.left;
+    dragOffsetY = e.clientY - wRect.top;
+    e.dataTransfer.setData('widget-type', '');
+  });
+
+  widget.querySelector('.widget-delete').addEventListener('click', e => {
+    e.stopPropagation();
+    widget.remove();
+  });
+
+  widget.addEventListener('click', e => {
+    if (e.target.classList.contains('widget-delete')) return;
+    openWidgetSettings(widget, type);
+  });
+
+  widgetGrid.appendChild(widget);
+}
+

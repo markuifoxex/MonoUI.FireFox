@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+</head>
+
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Чтобы не появилась горизонтальная прокрутка */ overflow-y: hidden; /* Чтобы не появилась горизонтальная прокрутка */
+        background-color: #fefaf0;
+    }
+
+    .bio {
+        font-family: "Abhaya Libre", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 900;
+        font-size: 70px;
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .info{
+    width: 1000px;
+    max-width: 95%;
+    height: 70px;
+    border-radius: 15px;
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    text-align: center;
+    font-size: 21px;
+    margin-top: -70px;
+    font-family: "Sometype Mono", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: 500; font-style: italic;
+    }
+    
+    .black-line {
+        background-color: black; /* Цвет линии */
+        height: 7px;             /* Толщина линии */
+        border: none;            /* Убираем стандартную рамку */
+        width: 100vw;       /* Растянуть на всю ширину окна */
+        margin: 20px 0;          /* Отступы сверху и снизу */
+    }
+
+    .me {
+        justify-content: center; 
+        align-items: center;    
+        text-align: center;
+        font-style: italic; font-weight: 600; font-size: 30px;
+        font-family: 'Red Hat Mono', Courier, monospace, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .photo-box {
+        display: flex;
+        justify-content: center;
+        gap: 175px;
+        align-items: flex-start;
+    }
+
+    .photo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .photo-item img {
+        border-radius: 20px;
+    }
+
+    .photo-text {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 18px;
+        color: black;
+        font-family: "Doto", sans-serif;
+        font-weight: 900;
+    }
+
+    .now {
+        justify-content: center; 
+        align-items: center;    
+        text-align: center;
+        font-style: italic; font-weight: 600; font-size: 30px;
+        font-family: 'Red Hat Mono', Courier, monospace, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;            
+        margin-top: -15px;
+        margin-bottom: 40px; /* Расстояние ПОСЛЕ каждого абзаца */
+    }
+
+</style>
+
+<body>
+    
+<div class="tittle">
+    <p class="bio">Hi, this is my biography  >"<</p>
+    <div class="info">First of all, I want to say that some details were changed for security reasons.<br>“*” meaning changed info.</div>
+    <hr class="black-line">
+    <p class="me">My name is *Jason Lee. I was born in *Krakow, Poland. I’m *16 years old.</p>
+
+<div class="photo-box">
+
+  <div class="photo-item">
+    <img src="/about-me/shadow-trapped-male.jpg" width="250" height="175">
+    <p class="photo-text">Just imagine it's me</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="/about-me/IMG_E2063.JPG" width="250" height="175">
+    <p class="photo-text">My PC setup, where <br> I work, learn, etc</p>
+  </div>
+</div>
+
+ <p class="now">Now, while I’m typing this and working on my first project, I really enjoy what I do. <br> In the future, I want to become a front-end developer or a graphic designer.  </p>
+ <p class="now">I want to tell you about my project — "MonoUI" (old name: markui)</p>
+ <p class="now">It’s an extension that helps you customize your homepage. Why did I make this project?</p>
+ <p class="now">Because when I saw the default Firefox homepage, I thought: “What is this shit ?”</p>
+ <p class="now">In the future, I want to create more pet projects and, if possible, work on bigger projects.</p>   
+ <p class="now">That’s all. Thanks for staying with me⁠ (❁´◡`❁)</p>
+
+</div>
+
+<div class="smalltext" style="margin-top:-20px;">
+<p class="kofi" style="text-align:center; align-items: center; justify-content: center; font-family:'DM Sans', system-ui, sans-serif; font-size:15px; color: #ff0000;">
+  Support Me:
+  <a href="https://ko-fi.com/jasonleee" target="_blank" style="color: #000000;">
+    https://ko-fi.com/jasonleee
+  </a>
+</p>
+<p class="gh" style="text-align:center; align-items: center; justify-content: center; font-family:'DM Sans', system-ui, sans-serif; font-size:15px; color: #ffd900;">
+  GitHub:
+  <a href="https://github.com/markuifoxex" target="_blank" style="color: #000000;">
+    https://github.com/markuifoxex
+  </a>
+</p>
+<p class="ig" style="text-align:center; align-items: center; justify-content: center; font-family:'DM Sans', system-ui, sans-serif; font-size:15px; color: #00c227;">
+  IG:
+  <a href="https://www.instagram.com/monoui.firefox" target="_blank" style="color: #000000;">
+    https://www.instagram.com/monoui.firefox
+  </a>
+</p>
+</div>
+
+</body>
+</html>

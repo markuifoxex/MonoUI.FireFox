@@ -1,27 +1,42 @@
 {
   "manifest_version": 3,
-  "name": "MarkUI",
-  "version": "1.0",
-  "description": "EN - This open sourca extension help you customize your homepage from ugly default page to customizable page with custom icons, fonts, styles, colors etc",
-  "action": {
-    "default_popup": "popup.html"
+  "name": "MonoUI",
+  "version": "1.0.2",
+  "description": "Customizable homepage with icons, fonts, and styles.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "stellar-tab@extension",
+      "strict_min_version": "109.0" 
+    }
   },
+
   "chrome_url_overrides": {
-    "newtab": "newtab.html"
+    "newtab": "popup.html"
   },
+
+  "chrome_settings_overrides": {
+  "homepage": "popup.html"
+},
+
+ "action": {
+    "default_popup": "panel.html",
+    "default_icon": {
+      "48": "Icons/Icon48.png"
+    }
+  },
+
+
   "permissions": [
     "storage",
     "bookmarks",
     "tabs"
   ],
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "stellar-tab@extension",
-      "strict_min_version": "57.0"
-    }
-  },
+
   "icons": {
-    "48": "icon48.png",
-    "96": "icon96.png"
+    "16": "Icons/Icon16.png",
+    "32": "Icons/Icon32.png",
+    "48": "Icons/Icon48.png",
+    "128": "Icons/Icon128.png"
   }
 }

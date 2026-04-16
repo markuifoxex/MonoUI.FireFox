@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Tab</title>
-  <!-- Anonymous Pro, Google Sans Flex, Manrope, Poppins, Jost, Bricolage Grotesque, Nunito Sans -->
+  <!-- Anonymous Pro, Google Sans Flex, Manrope, Poppins, Jost, Bricolage Grotesque,     -->
   <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
@@ -13,8 +13,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="Icons/Icon512.png">
 </head>
-<body>
+<body style="visibility:hidden; opacity:0;">
 
 <!-- ── ONBOARDING ── -->
 <div id="onboarding">
@@ -31,14 +32,14 @@
       <div class="slide-content">
         <h1>choose your <u>colour</u></h1>
         <p>Pick an accent colour for your theme.<br>you can always change the color in the settings</p>
-        <div class="colour-row" id="colour-picker">
-          <div class="colour-swatch selected" data-colour="#ffffff" style="background:#ffffff;" title="ffffff"></div>
-          <div class="colour-swatch" data-colour="#6cb4f5" style="background:#6cb4f5;" title="6cb4f5"></div>
-          <div class="colour-swatch" data-colour="#7ee8a2" style="background:#7ee8a2;" title="7ee8a2"></div>
-          <div class="colour-swatch" data-colour="#f5a623" style="background:#f5a623;" title="f5a623"></div>
-          <div class="colour-swatch" data-colour="#f56bae" style="background:#f56bae;" title="f56bae"></div>
-          <div class="colour-swatch" data-colour="#c77dff" style="background:#c77dff;" title="c77dff"></div>
-          <div class="colour-swatch" data-colour="#ff6b6b" style="background:#ff6b6b;" title="ff6b6b"></div>
+        <div class="colour-row-f" id="colour-picker">
+          <div class="colour-swatch-f selected" data-colour="#ffffff" style="background:#ffffff;" title="ffffff"></div>
+          <div class="colour-swatch-f" data-colour="#6cb4f5" style="background:#6cb4f5;" title="6cb4f5"></div>
+          <div class="colour-swatch-f" data-colour="#7ee8a2" style="background:#7ee8a2;" title="7ee8a2"></div>
+          <div class="colour-swatch-f" data-colour="#f5a623" style="background:#f5a623;" title="f5a623"></div>
+          <div class="colour-swatch-f" data-colour="#f56bae" style="background:#f56bae;" title="f56bae"></div>
+          <div class="colour-swatch-f" data-colour="#c77dff" style="background:#c77dff;" title="c77dff"></div>
+          <div class="colour-swatch-f" data-colour="#ff6b6b" style="background:#ff6b6b;" title="ff6b6b"></div>
         </div>
       </div>
     </div>
@@ -127,7 +128,7 @@
   </div>
 
   <button class="btn-edit" id="btn-edit">
-    <img src="/Icons/pen.png" alt="setting" class="btn-e-i">
+    <img src="/Icons/pen.png" alt="setting" class="btn-e-i" style="justify-content: center; text-align: center; align-items: center;">
   </button>
 </div>
 
@@ -148,7 +149,7 @@
     <h2>settings</h2>
 
     <div class="theme-store-box" id="theme-button" style="cursor: pointer;">
-    <img src="/Icons/layout.png" class="theme-store" title="Theme Store">
+    <img src="/Icons/layout.png" class="theme-store" title="Themes/Wallpapers Store">
     <span class="theme-text" title="Theme Store" >Store</span>
 </div>
 
@@ -167,7 +168,7 @@
             <img src="/Icons/pick.png" class="pick" width="34" height="34" style="pointer-events:none;">
           <input type="color" id="colour-input" value="#ffffff">          
         </div>
-        <img src="/Icons/reset.png" id="colour-reset" 
+        <img src="Icons/reset.png" id="colour-reset" 
        style="width:35px; height:35px; cursor:pointer;" 
        title="Reset to default">
       </div>
@@ -227,9 +228,9 @@
 <div class="fonts-w"> 
   <p class="c-w">Wallpaper Changer</p>
   <input type="file" id="wallpaper-input" accept="image/*" style="display:none;">
-  <label for="wallpaper-input" class="btn-finish" style="text-align:center; cursor:pointer; position: relative; bottom: 10px; border-radius: 10px;">choose</label>
+  <label for="wallpaper-input" class="btn-finish" style="text-align:center; cursor:pointer; position: relative; bottom: 10px; border-radius: 10px;">Choose Wallpaper</label>
   <p class="p-u-w">
-  "Default Wallpaper" you can find on 
+  All wallpapers you can find on 
   <a href="https://github.com/markuifoxex/MarkUI.FireFox" target="_blank">
     <img src="/Icons/github.png" class="github-logo" width="15" height="15" style="position: relative; top: 3px;" alt="GitHub">
   </a>
@@ -248,12 +249,6 @@ in the search bar so no one can see it." style="cursor: pointer;"></p>
   </button>
 </div>
 
-<section class="settings-section-w">
-  <p class="settings-label-w">City for weather widget</p>
-  <input id="settings-city" type="text" placeholder="Type here" />
-  <button id="settings-city-save" class="btn-finish" style="margin-top:10px;">save</button>
-</section>
-
 </div>
   </div>
 </div>
@@ -267,37 +262,8 @@ in the search bar so no one can see it." style="cursor: pointer;"></p>
 
    <div class="theme-item-slash">
     <p class="theme-name-text">────────────────────────────────────themes────────────────────────────────────</p>
+    <p class="theme-name-soon" style="width: 100%;font-size: 13px;font-weight: 400; font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">─coming soon🥲─</p>
   </div>   
-
-  <div class="theme-item-green">
-    <img src="/Themes/theme1.png" class="theme-card">
-    <p class="theme-name">Green Summer🍃</p>
-  </div>
-
-  <div class="theme-item-forest">
-    <img src="/Themes/theme2.png" class="theme-card">
-    <p class="theme-name">Forest Vibe🌲</p>
-  </div>
-
-  <div class="theme-item-park">
-    <img src="/Themes/theme3.png" class="theme-card">
-    <p class="theme-name">Crazy Park🫨</p>
-  </div>
-
-  <div class="theme-item-anon">
-    <img src="/Themes/theme4.png" class="theme-card">
-    <p class="theme-name">An*nym*us🥸</p>
-  </div>
-
-  <div class="theme-item-firefox">
-    <img src="/Themes/theme5.png" class="theme-card">
-    <p class="theme-name">We Love Fire🦊(Default Theme)</p>
-  </div>
-
-  <div class="theme-item-uk">
-    <img src="/themes/theme6.png" class="theme-card">
-    <p class="theme-name">StandWithUkraine☮️</p>
-  </div>
 
   <div class="theme-item-slash">
     <p class="theme-name-text">───────────────────────────────────wallpapers───────────────────────────────────</p>
@@ -311,45 +277,132 @@ in the search bar so no one can see it." style="cursor: pointer;"></p>
 </div>
 
   <div class="theme-item-apple">
-    <img src="/Wallpaper/Theme10.png" class="theme-card">
+    <img src="Wallpaper/Theme10.png" class="theme-card">
     <p class="theme-name">Just Bitten Apple🤔(AI)</p>
   </div>
 
   <div class="theme-item-window">
-    <img src="/Wallpaper/theme7.png" class="theme-card">
+    <img src="Wallpaper/theme7.png" class="theme-card">
     <p class="theme-name">11🪟</p>
   </div>
 
   <div class="theme-item-linux">
-    <img src="/Wallpaper/theme8.png" class="theme-card">
+    <img src="Wallpaper/theme8.png" class="theme-card">
     <p class="theme-name">Who is it penguin?🐧(AI)</p>
   </div>
 
   <div class="theme-item-quotes">
-    <img src="/Wallpaper/theme9.png" class="theme-card">
+    <img src="Wallpaper/theme9.png" class="theme-card">
     <p class="theme-name">The quote about politics📑</p>
   </div>
 
   <div class="theme-item-Duck">
-    <img src="/Wallpaper/theme11.png" class="theme-card">
+    <img src="Wallpaper/theme11.png" class="theme-card">
     <p class="theme-name">Duck.Duck.Duck.💛</p>
   </div>
   
    <div class="theme-item-pink">
-    <img src="/Wallpaper/theme12.png" class="theme-card">
+    <img src="Wallpaper/theme12.png" class="theme-card">
     <p class="theme-name">Who said pink is only for women?🩷</p>
   </div>
 
   <div class="theme-item-reddot">
-    <img src="/Wallpaper/theme13.png" class="theme-card">
-    <p class="theme-name">Carl Pei🟥◻️⚫.</p>
+    <img src="Wallpaper/theme13.png" class="theme-card">
+    <p class="theme-name">Carl Pei⭐.</p>
   </div>
 
   <div class="theme-item-redq">
-    <img src="/Wallpaper/theme14.png" class="theme-card">
+    <img src="Wallpaper/theme14.png" class="theme-card">
     <p class="theme-name">Love is Love💓</p>
   </div>
 
+  <div class="theme-item-krak">
+    <img src="Wallpaper/Theme15.png" class="theme-card">
+    <p class="theme-name">Krakow🫶💓🫶</p>
+  </div>
+
+  <div class="theme-item-wars">
+    <img src="Wallpaper/Theme16.png" class="theme-card">
+    <p class="theme-name">Warsaw🏙️</p>
+  </div>
+
+  <div class="theme-item-Japan">
+    <img src="Wallpaper/Theme17.png" class="theme-card">
+    <p class="theme-name">I'm big in Japan🎌</p>
+  </div>
+
+  <div class="theme-item-Fantasy">
+    <img src="Wallpaper/Theme18.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Fantasy🟢</p>
+  </div>
+
+  <div class="theme-item-f1">
+    <img src="Wallpaper/Theme19.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">F1🏎️</p>
+  </div>
+
+  <div class="theme-item-2026">
+    <img src="Wallpaper/Theme20.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">2026🎄</p>
+  </div>
+
+  <div class="theme-item-Dog">
+    <img src="Wallpaper/Theme22.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Dog or</p>
+  </div>
+
+  <div class="theme-item-Cat">
+    <img src="Wallpaper/Theme21.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Cat?</p>
+  </div>
+
+  <div class="theme-item-Gorilla">
+    <img src="Wallpaper/Theme23.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Gorilla?</p>
+  </div>
+
+  <div class="theme-item-Cloud">
+    <img src="Wallpaper/Theme24.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Cloud?</p>
+  </div>
+  
+  <div class="theme-item-popy">
+    <img src="Wallpaper/Theme25.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">PoPy?</p>
+  </div>
+
+  <div class="theme-item-jojo">
+    <img src="Wallpaper/Theme26.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">JoJo?</p>
+  </div>
+
+  <div class="theme-item-tutu">
+    <img src="Wallpaper/Theme27.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">TuTu?</p>
+  </div>
+
+  <div class="theme-item-nite">
+    <img src="Wallpaper/Theme28.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Nite?</p>
+  </div>
+
+  <div class="theme-item-w11b">
+    <img src="Wallpaper/Theme29.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Microsoft 50th Anniversary Black⬛</p>
+  </div>
+
+  <div class="theme-item-w11w">
+    <img src="Wallpaper/Theme30.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Microsoft 50th Anniversary White⬜</p>
+  </div>
+
+  <div class="theme-item-scifi">
+    <img src="Wallpaper/Theme31.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Sci-Fi⭕</p>  
+  </div>
+
+  </div>
+ </div>
 </div>
 
 <script src="popup.js"></script>  
