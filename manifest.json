@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "MonoUI",
+  "version": "1.0.3",
+  "description": "Customizable homepage with icons, fonts, and styles.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "stellar-tab@extension",
+      "strict_min_version": "109.0" 
+    }
+  },
+
+  "chrome_url_overrides": {
+    "newtab": "popup.html"
+  },
+
+  "chrome_settings_overrides": {
+  "homepage": "popup.html"
+},
+
+ "action": {
+    "default_popup": "panel.html",
+    "default_icon": {
+      "48": "Icons/Icon48.png"
+    }
+  },
+
+
+  "permissions": [
+    "storage",
+    "bookmarks",
+    "tabs"
+  ],
+
+  "icons": {
+    "128": "Icons/Icon128.png"
+  }
+}

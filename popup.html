@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Tab</title>
+  <!-- Anonymous Pro, Google Sans Flex, Manrope, Poppins, Jost, Bricolage Grotesque,     -->
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="Icons/Icon512.png">
+</head>
+<body style="visibility:hidden; opacity:0;">
+
+<!-- ── ONBOARDING ── -->
+<div id="onboarding">
+  <div class="slides">
+
+    <div class="slide active" data-slide="0">
+      <div class="slide-content">
+        <h1>ready?</h1>
+        <p>Let's set up your new start page.</p>
+      </div>
+    </div>
+
+    <div class="slide" data-slide="1">
+      <div class="slide-content">
+        <h1>choose your <u>colour</u></h1>
+        <p>Pick an accent colour for your theme.<br>you can always change the color in the settings</p>
+        <div class="colour-row-f" id="colour-picker">
+          <div class="colour-swatch-f selected" data-colour="#ffffff" style="background:#ffffff;" title="ffffff"></div>
+          <div class="colour-swatch-f" data-colour="#6cb4f5" style="background:#6cb4f5;" title="6cb4f5"></div>
+          <div class="colour-swatch-f" data-colour="#7ee8a2" style="background:#7ee8a2;" title="7ee8a2"></div>
+          <div class="colour-swatch-f" data-colour="#f5a623" style="background:#f5a623;" title="f5a623"></div>
+          <div class="colour-swatch-f" data-colour="#f56bae" style="background:#f56bae;" title="f56bae"></div>
+          <div class="colour-swatch-f" data-colour="#c77dff" style="background:#c77dff;" title="c77dff"></div>
+          <div class="colour-swatch-f" data-colour="#ff6b6b" style="background:#ff6b6b;" title="ff6b6b"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-slide="2">
+      <div class="slide-content">
+        <h1>choose your <u>city</u></h1>
+        <p>This is needed for the weather widget.<br>if you don't want to use it, just skip this step.</p>
+        <button id="show-city-input" class="btn-finish">choose city</button>
+        <input id="input-city" type="text" placeholder="type your city" style="display:none; margin-top:16px; padding:10px 18px; border-radius:24px; border:none; background:rgba(255,255,255,0.1); color:white; font-family:'Courier Prime',monospace; font-size:15px; outline:none; text-align:center; width:260px;">
+      </div>
+    </div>
+
+    <div class="slide" data-slide="3">
+      <div class="slide-content">
+        <h1>search engine</h1>
+        <p>Choose which search engines to show in your page.<br>you can always change the search engine in the settings</p>
+        <div class="engine-row">
+          <button class="engine-btn" data-engine="google">
+            <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+          </button>
+          <button class="engine-btn" data-engine="ddg">
+            <span style="color:#db5b37;">DuckDuckGo</span>
+          </button>
+          <button class="engine-btn" data-engine="brave">
+            <span style="color:#ff4800;">Brave</span>
+          </button>
+          <button class="engine-btn" data-engine="bing">
+            <span style="color:#1695d1;">Bing</span>
+          </button>
+          <span class="slash">|</span>
+          <button class="engine-btn" data-engine="custom">
+            <span style="color:#ffffff;">Custom</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-slide="4">
+      <div class="slide-content">
+        <h1>that's all.</h1>
+        <p>Your start page is ready.<br>thanks, for choosing us</p>
+        <button class="btn-finish" id="btn-finish">Let's see →</button>
+      </div>
+      <span class="links">our links</span>
+      <a href="https://github.com/markuifoxex/MarkUI.FireFox">
+        <img class="link-g" src="/Icons/github.png" alt="GitHub">
+      </a>
+      <a href="https://www.instagram.com/markui.fox.ex">
+        <img class="link-m" src="/Icons/insta.png" alt="Instagram">
+      </a>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <button class="nav-arrow-l" id="prev-btn" disabled>←</button>
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <button class="nav-arrow-r" id="next-btn">→</button>
+  </nav>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div id="app">
+  <div id="clock">00:00</div>
+  <div class="search-bar" id="search-bar"></div>
+  <div id="sites-grid"></div>
+  <div class="site-card">
+    <button id="add-btn" title="Add site" style="border-radius: 15px;">+</button>
+    <span class="site-label">Add</span>
+  </div>
+  <div id="modal">
+    <div id="modal-box">
+      <input id="input-name" type="text" placeholder="Name" />
+      <input id="input-url" type="text" placeholder="URL" />
+      <div class="modal-buttons">
+        <button id="btn-cancel">cancel</button>
+        <button id="btn-save">save</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-edit" id="btn-edit">
+    <img src="/Icons/pen.png" alt="setting" class="btn-e-i" style="justify-content: center; text-align: center; align-items: center;">
+  </button>
+</div>
+
+<div id="custom-modal">
+  <div id="custom-modal-box">
+    <input id="custom-url" type="text" placeholder="https://example.com/search" />
+    <div class="modal-buttons">
+      <button id="custom-cancel">cancel</button>
+      <button id="custom-save">save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── SETTINGS PANEL ── -->
+<div id="settings-panel">
+  <div id="settings-overlay"></div>
+  <div id="settings-drawer">
+    <h2>settings</h2>
+
+    <div class="theme-store-box" id="theme-button" style="cursor: pointer;">
+    <img src="/Icons/layout.png" class="theme-store" title="Themes/Wallpapers Store">
+    <span class="theme-text" title="Theme Store" >Store</span>
+</div>
+
+    <section class="settings-section">
+      <p class="settings-label">accent colour</p>
+      <div class="colour-row">
+        <div class="colour-swatch" data-colour="#ffffff" style="background:#ffffff;"></div>
+        <div class="colour-swatch" data-colour="#6cb4f5" style="background:#6cb4f5;"></div>
+        <div class="colour-swatch" data-colour="#7ee8a2" style="background:#7ee8a2;"></div>
+        <div class="colour-swatch" data-colour="#f5a623" style="background:#f5a623;"></div>
+        <div class="colour-swatch" data-colour="#f56bae" style="background:#f56bae;"></div>
+        <div class="colour-swatch" data-colour="#c77dff" style="background:#c77dff;"></div>
+        <div class="colour-swatch" data-colour="#ff6b6b" style="background:#ff6b6b;"></div>
+
+          <div class="colour-swatch colour-picker-swatch" title="Custom colour">
+            <img src="/Icons/pick.png" class="pick" width="34" height="34" style="pointer-events:none;">
+          <input type="color" id="colour-input" value="#ffffff">          
+        </div>
+        <img src="Icons/reset.png" id="colour-reset" 
+       style="width:35px; height:35px; cursor:pointer;" 
+       title="Reset to default">
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <p class="settings-label">search engine</p>
+      <div class="engine-row">
+        <button class="engine-btn s-engine-btn" data-engine="google">
+          <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+        </button>
+        <button class="engine-btn s-engine-btn" data-engine="ddg"><span style="color:#db5b37;">DuckDuckGo</span></button>
+        <button class="engine-btn s-engine-btn" data-engine="brave"><span style="color:#ff4800;">Brave</span></button>
+        <button class="engine-btn s-engine-btn" data-engine="bing"><span style="color:#1695d1;">Bing</span></button>
+        <button class="engine-btn s-engine-btn" data-engine="custom"><span style="color:#fff;">Custom</span></button>
+      </div>
+    </section>
+
+    <div class="tab">
+      <img src="/Icons/Rectangle.png">
+    </div>
+    <div>
+      <p class="M-S">Main Settings</p>
+    </div>
+
+    <div class="fonts-f"> 
+  <p class="f-w">Fonts Changer</p>  
+  <input id="settings-city-fonts" type="text" placeholder='Default font - "Jost". Only GoogleFonts' />
+  <button id="settings-font-save" class="btn-finish" style="margin-top:10px;">save</button>
+</div>
+
+<section class="settings-section-t">
+  <p class="settings-label-t">Transparency changer</p>  
+  <input id="settings-transparency" type="range" min="0" max="100" value="15">
+  <button id="settings-transparency-save" class="btn-finish" style="margin-top:10px;">save</button>
+</section>
+
+<section class="settings-br-c">
+  <div class="border-target-wrap" id="border-target-wrap">
+    <div class="border-target-box" id="border-target-box">
+      <button class="border-target-btn active" data-target="widgets">Widgets</button>
+      <button class="border-target-btn" data-target="add-link">add-link</button>
+      <button class="border-target-btn" data-target="search-bar">search-bar</button>
+      <button class="border-target-btn" data-target="all">all</button>
+    </div>
+  </div>
+
+  <div class="border-picker-header" id="border-picker-toggle">
+    <p class="settings-bor-cha">Border-Radius changer</p>
+    <span class="border-arrow" id="border-arrow" title="more options">˄</span>
+  </div>
+
+  <input id="settings-borderradius" type="range" min="0" max="35" value="15">
+  <button id="settings-border-save" class="btn-finish" style="margin-top:10px;">save</button>
+</section>
+
+<div class="fonts-w"> 
+  <p class="c-w">Wallpaper Changer</p>
+  <input type="file" id="wallpaper-input" accept="image/*" style="display:none;">
+  <label for="wallpaper-input" class="btn-finish" style="text-align:center; cursor:pointer; position: relative; bottom: 10px; border-radius: 10px;">Choose Wallpaper</label>
+  <p class="p-u-w">
+  All wallpapers you can find on 
+  <a href="https://github.com/markuifoxex/MarkUI.FireFox" target="_blank">
+    <img src="/Icons/github.png" class="github-logo" width="15" height="15" style="position: relative; top: 3px;" alt="GitHub">
+  </a>
+</p>
+
+<div class="security-mode-m">
+  <p class="security-mode">Privacy-mode<img src="/Icons/help.png" class="info" width="12" height="12" title="Privacy mode hides the text you type
+in the search bar so no one can see it." style="cursor: pointer;"></p>
+  <button class="btn-mode">
+    <img src="/Icons/star1.png" class="star" width="11" height="11">
+    <img src="/Icons/star2.png" class="star" width="11" height="11">
+    <img src="/Icons/star3.png" class="star" width="11" height="11">
+    <img src="/Icons/star4.png" class="star" width="11" height="11">
+    <img src="/Icons/star5.png" class="star" width="11" height="11">
+    <img src="/Icons/star6.png" class="star" width="11" height="11">
+  </button>
+</div>
+
+</div>
+  </div>
+</div>
+
+<!-- Modal box of Themes, wallpapers -->
+<div id="theme-modal">
+  <div class="theme-modal-box">
+    <p class="theme-x" style="cursor: pointer;">×</p>
+
+    <div class="theme-grid">
+
+   <div class="theme-item-slash">
+    <p class="theme-name-text">────────────────────────────────────themes────────────────────────────────────</p>
+    <p class="theme-name-soon" style="width: 100%;font-size: 13px;font-weight: 400; font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">─coming soon🥲─</p>
+  </div>   
+
+  <div class="theme-item-slash">
+    <p class="theme-name-text">───────────────────────────────────wallpapers───────────────────────────────────</p>
+    
+  <p class="theme-name-p">
+    All wallpaper in 4k you can find on
+    <a href="https://github.com/markuifoxex/MarkUI.FireFox" target="_blank">
+      <img src="Icons/githublogo.png" class="github-logo-wall" alt="GitHub">
+    </a>
+  </p>
+</div>
+
+  <div class="theme-item-apple">
+    <img src="Wallpaper/Theme10.png" class="theme-card">
+    <p class="theme-name">Just Bitten Apple🤔(AI)</p>
+  </div>
+
+  <div class="theme-item-window">
+    <img src="Wallpaper/theme7.png" class="theme-card">
+    <p class="theme-name">11🪟</p>
+  </div>
+
+  <div class="theme-item-linux">
+    <img src="Wallpaper/theme8.png" class="theme-card">
+    <p class="theme-name">Who is it penguin?🐧(AI)</p>
+  </div>
+
+  <div class="theme-item-quotes">
+    <img src="Wallpaper/theme9.png" class="theme-card">
+    <p class="theme-name">The quote about politics📑</p>
+  </div>
+
+  <div class="theme-item-Duck">
+    <img src="Wallpaper/theme11.png" class="theme-card">
+    <p class="theme-name">Duck.Duck.Duck.💛</p>
+  </div>
+  
+   <div class="theme-item-pink">
+    <img src="Wallpaper/theme12.png" class="theme-card">
+    <p class="theme-name">Who said pink is only for women?🩷</p>
+  </div>
+
+  <div class="theme-item-reddot">
+    <img src="Wallpaper/theme13.png" class="theme-card">
+    <p class="theme-name">Carl Pei⭐.</p>
+  </div>
+
+  <div class="theme-item-redq">
+    <img src="Wallpaper/theme14.png" class="theme-card">
+    <p class="theme-name">Love is Love💓</p>
+  </div>
+
+  <div class="theme-item-krak">
+    <img src="Wallpaper/Theme15.png" class="theme-card">
+    <p class="theme-name">Krakow🫶💓🫶</p>
+  </div>
+
+  <div class="theme-item-wars">
+    <img src="Wallpaper/Theme16.png" class="theme-card">
+    <p class="theme-name">Warsaw🏙️</p>
+  </div>
+
+  <div class="theme-item-Japan">
+    <img src="Wallpaper/Theme17.png" class="theme-card">
+    <p class="theme-name">I'm big in Japan🎌</p>
+  </div>
+
+  <div class="theme-item-Fantasy">
+    <img src="Wallpaper/Theme18.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Fantasy🟢</p>
+  </div>
+
+  <div class="theme-item-f1">
+    <img src="Wallpaper/Theme19.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">F1🏎️</p>
+  </div>
+
+  <div class="theme-item-2026">
+    <img src="Wallpaper/Theme20.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">2026🎄</p>
+  </div>
+
+  <div class="theme-item-Dog">
+    <img src="Wallpaper/Theme22.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Dog or</p>
+  </div>
+
+  <div class="theme-item-Cat">
+    <img src="Wallpaper/Theme21.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Cat?</p>
+  </div>
+
+  <div class="theme-item-Gorilla">
+    <img src="Wallpaper/Theme23.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Gorilla?</p>
+  </div>
+
+  <div class="theme-item-Cloud">
+    <img src="Wallpaper/Theme24.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Cloud?</p>
+  </div>
+  
+  <div class="theme-item-popy">
+    <img src="Wallpaper/Theme25.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">PoPy?</p>
+  </div>
+
+  <div class="theme-item-jojo">
+    <img src="Wallpaper/Theme26.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">JoJo?</p>
+  </div>
+
+  <div class="theme-item-tutu">
+    <img src="Wallpaper/Theme27.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">TuTu?</p>
+  </div>
+
+  <div class="theme-item-nite">
+    <img src="Wallpaper/Theme28.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Nite?</p>
+  </div>
+
+  <div class="theme-item-w11b">
+    <img src="Wallpaper/Theme29.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Microsoft 50th Anniversary Black⬛</p>
+  </div>
+
+  <div class="theme-item-w11w">
+    <img src="Wallpaper/Theme30.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Microsoft 50th Anniversary White⬜</p>
+  </div>
+
+  <div class="theme-item-scifi">
+    <img src="Wallpaper/Theme31.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Sci-Fi⭕</p>  
+  </div>
+  
+  <div class="theme-item-sci-fi">
+    <img src="Wallpaper/Theme32.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">SciFi⭕</p>  
+  </div>
+
+<div class="theme-item-mac">
+    <img src="Wallpaper/Theme33.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Tahoe🍎</p>  
+  </div>
+
+  <div class="theme-item-11">
+    <img src="Wallpaper/Theme34.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Default W11🔵</p>  
+  </div>
+
+  <div class="theme-item-mono">
+    <img src="Wallpaper/Theme35.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Monochrome Car♣️</p>  
+  </div>
+
+  <div class="theme-item-chrome">
+    <img src="Wallpaper/Theme36.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Monochrome Wars◼️◻️</p>  
+  </div>
+
+  <div class="theme-item-xbox">
+    <img src="Wallpaper/Theme37.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Xbox logo#1🟢</p>  
+  </div>
+
+  <div class="theme-item-xbox">
+    <img src="Wallpaper/Theme38.png" class="theme-card" title="Thanks : https://4kwallpapers.com">
+    <p class="theme-name">Xbox logo#2🟢</p>  
+  </div>
+
+  <div class="theme-item-xbox">
+    <img src="Wallpaper/Theme39.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Xbox logo#3🟢</p>  
+  </div>
+
+  <div class="theme-item-xbox">
+    <img src="Wallpaper/Theme40.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Xbox logo#4🟢</p>  
+  </div>
+
+  <div class="theme-item-xbox">
+    <img src="Wallpaper/Theme41.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Xbox logo#5🟢</p>  
+  </div>
+
+  <div class="theme-item-xbox">
+    <img src="Wallpaper/Theme42.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Xbox logo#6🟢</p>  
+  </div>
+
+  <div class="theme-item-ps">
+    <img src="Wallpaper/Theme43.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Playstation🔷🟦</p>  
+  </div>
+
+  <div class="theme-item-ps">
+    <img src="Wallpaper/Theme44.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Playstation🔷🟦</p>  
+  </div>
+
+  <div class="theme-item-ps">
+    <img src="Wallpaper/Theme45.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Playstation🔷🟦</p>  
+  </div>
+
+  <div class="theme-item-ps">
+    <img src="Wallpaper/Theme46.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Playstation🔷🟦</p>  
+  </div>
+
+  <div class="theme-item-code">
+    <img src="Wallpaper/Theme47.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Coding👩‍💻</p>  
+  </div>
+
+  <div class="theme-item-code">
+    <img src="Wallpaper/Theme48.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Hello, World!🌍</p>  
+  </div>
+
+  <div class="theme-item-anon">
+    <img src="Wallpaper/Theme49.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Anonymous #1</p>  
+  </div>
+
+  <div class="theme-item-anon">
+    <img src="Wallpaper/Theme50.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Anonymous #2</p>  
+  </div>
+
+  <div class="theme-item-anon">
+    <img src="Wallpaper/Theme51.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Anonymous #3</p>  
+  </div>
+
+  <div class="theme-item-anon">
+    <img src="Wallpaper/Theme52.png" class="theme-card" title="Thanks: https://4kwallpapers.com">
+    <p class="theme-name">Anonymous #4</p>  
+  </div>
+
+  </div>
+ </div>
+</div>
+
+<script src="popup.js"></script>  
+</body>
+</html>
